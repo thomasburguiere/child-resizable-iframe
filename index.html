@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Child iframe example</title>
+  </head>
+
+  <body>
+    <h1 id="title">Iframe content from a different origin (github.io)</h1>
+    <p id="content">This is the initial text that loads with the page.</p>
+  </body>
+
+  <!-- This import create the child listener, it allows
+       this page to be embedded and resized in a page
+       from another origin -->
+  <script
+    type="module"
+    src="https://cdn.jsdelivr.net/npm/@open-iframe-resizer/core@latest/dist/index.js"
+  ></script>
+    <!-- <script
+    type="module"
+    src="http://localhost:6010/open-frame-resizer.js"
+  ></script> -->
+
+  <!-- The script below is not needed, it only
+       generates content to simulate a growing iframe -->
+  <script>
+    const lorem =
+      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat\n";
+    document.addEventListener("DOMContentLoaded", () => {
+      const content = document.getElementById("content");
+      const additionalText = lorem.repeat(2);
+
+      let times = 0;
+      const intervalId = setInterval(() => {
+        if (times < 4) {
+          content.innerHTML += additionalText;
+          times++;
+        } else {
+          clearInterval(intervalId);
+        }
+      }, 1500);
+    });
+  </script>
+</html>
