@@ -2,6 +2,11 @@
 <html lang="en">
   <head>
     <title>Child iframe example</title>
+
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' 'unsafe-inline';
+                 script-src 'unsafe-inline' 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
+                 style-src 'self' 'unsafe-inline';" />
   </head>
 
   <body>
